@@ -38,3 +38,4 @@ scene_detect_url = 'models/places:predict'
 object_detect_api = "http://127.0.0.1:8000/api/objects/"
 nsfw_classifier_api = "http://127.0.0.1:8000/api/nsfw/"
 sim_face_search_api = "http://127.0.0.1:8000/api/simface/"
+face_recognition_api = "http://127.0.0.1:8000/api/image/"

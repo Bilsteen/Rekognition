@@ -1,10 +1,9 @@
 from django.test import TestCase
-from corelib.constant import object_detect_api , nsfw_classifier_api , sim_face_search_api
+from corelib.constant import object_detect_api , nsfw_classifier_api , sim_face_search_api , face_recognition_api
 import requests
 import json
 
 class TestObjectDetect(TestCase):
-	"""docstring for TestObjectDetect"""
 	def setUp(self):
 		super(TestObjectDetect,self).setUp()
 		self.test_obj = {'file': open("./tests/testdata/bicycle.jpg",'rb') }
@@ -38,3 +37,13 @@ class TestSimilarFacceSearch(TestCase):
 	def test_similar_face_search(self):
 		result = json.loads(requests.post(sim_face_search_api,files=self.test_obj).text)
 		self.assertEqual(result["result"][1],self.output)
+
+class TestFaceRecognition(TestCase):
+	def setUp(self):
+		super(TestFaceRecognition, self).setUp()
+		self.test_obj = {"file":open("./tests/testdata/amitabh.jpg" , 'rb')}
+		self.output = "amitabh bachan"
+	
+	def test_face_recognition(self):
+		result = json.loads(requests.post(face_recognition_api,files=self.test_obj).text)
+		self.assertEqual(result["Faces"][0]["Identity"].lower(),self.output)

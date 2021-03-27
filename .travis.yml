@@ -39,6 +39,7 @@ before_script:
   - psql -U postgres -c "ALTER ROLE admin SET timezone TO 'UTC'"
   - psql -U postgres -c "ALTER USER admin CREATEDB"
   - psql -U postgres -c "ALTER DATABASE pmr OWNER TO admin"
+  - python manage.py runserver 8000
 
 script:
   - flake8 .
